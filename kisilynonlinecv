@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisilyn Dioneda | Interactive CV</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+       
+        :root {
+            --primary: #6366f1;
+            --accent: #f43f5e;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --header-dark: #2c3e50;
+        }
+
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background: #f4f6f9;
+            color: var(--bg);
+        }
+
+
+       
+        #cover {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)),
+                        url("https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            cursor: pointer;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+
+        #cover img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--primary);
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+
+
+        .click-text {
+            margin-top: 10px;
+            font-size: 16px;
+            opacity: 0.8;
+            animation: blink 1.5s infinite;
+        }
+
+
+        @keyframes blink {
+            0% {opacity: 0.3;}
+            50% {opacity: 1;}
+            100% {opacity: 0.3;}
+        }
+
+
+       
+        header {
+            background: var(--header-dark);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+        }
+
+
+       
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+
+
+        .cv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+
+       
+        .cv-card {
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            color: var(--text);
+        }
+
+
+        .cv-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.4);
+        }
+
+
+        .cv-card h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            display: hidden;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+            box-shadow: 0 0 8px var(--primary);
+        }
+
+
+        .icon-box {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+
+
+       
+        .cv-content {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+
+        .cv-card.active .cv-content {
+            max-height: 800px;
+            opacity: 1;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+
+       
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text);
+        }
+
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.03);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+
+        .contact-item a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+
+        ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+
+        li { margin-bottom: 5px; }
+
+
+       
+.cv-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+
+.cv-card {
+    border-top: 5px solid var(--primary);
+    background: #1e293b;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+}
+
+
+.cv-content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+
+.cv-card.active .cv-content {
+    max-height: 2000px;
+    opacity: 1;
+    padding: 20px;
+}
+    </style>
+
+
+</head>
+<body>
+<div id="cover" onclick="openCV()">
+    <img src="c:\Users\DTC\Downloads\kisilyn.jpg"
+    <h1>KISILYN DIONEDA</h1>
+    <p class="click-text">Click here to see full CV</p>
+</div>
+<header>
+    <img src="c:\Users\DTC\Downloads\kisilyn.jpg" alt="Kisilyn">
+    <h1>KISILYN DIONEDA</h1>
+    <p>BSIT Student | Aspiring ICT Professional</p>
+</header>
+<div class="container">
+    <div class="cv-grid">
+        
+        <div class="cv-card" onclick="this.classList.toggle('active')">
+            <h3>
+                <span><span class="status-dot"></span>Contact Information</span>
+                <div class="icon-box">📞</div>
+            </h3>
+            <div class="cv-content">
+                <div class="contact-item">
+                    <span>📱</span><a href="tel:09703329812">0970-332-9812</a>
+                </div>
+                <div class="contact-item">
+                    <span>📧</span><a href="mailto:kisilyndioneda21@gmail.com">kisilyndioneda21@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <span>📍</span><span> PUROK 7 San Ramon, Bacon District, Sorsogon City</span>
+                </div>
+            </div>
+        </div>
+        
+</header>
+     <div class="container">  
+        <div class="cv-grid">
+
+
+        <div class="cv-card" onclick="this.classList.toggle('active')">
+            <h3>
+                <span><span class="status-dot"></span>Career Objective</span>
+                <div class="icon-box">🎯</div>
+            </h3>
+            <div class="cv-content">
+                 I aim to apply my basic ICT knowledge, enhance my technical and communication skills, and gain hands-on experience while contributing to the department's daily operations and public service.
+              </div>
+        </div>
+        </div>
+
+
+        <div class="cv-card" onclick="this.classList.toggle('active')">
+            <h3>
+                <span><span class="status-dot"></span>Technical Skills</span>
+                <div class="icon-box">🛠️</div>
+            </h3>
+            <div class="cv-content">
+                <div class="tag-container">
+                    <span class="tag">Canva Editing</span>
+                    <span class="tag">MS Office Specialist</span>
+                    <span class="tag">Basic Web Development</span>
+                    <span class="tag">Document Preparation</span>
+                    <span class="tag">Client Assisting</span>
+                </div>
+            </div>
+        </div>
+
+
+        <style>
+   
+    .school-entry {
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 12px;
+        margin-bottom: 15px;
+        padding: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: 0.3s;
+    }
+
+
+    .school-entry:hover {
+        border-color: #6366f1;
+    }
+
+
+    .school-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+    }
+
+
+    .edu-logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 6px;
+        object-fit: contain;
+        background: white;
+        padding: 2px;
+    }
+
+
+    .fb-link {
+        background: #1877F2;
+        color: white;
+        text-decoration: none;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+
+    .fb-link:hover {
+        background: #166fe5;
+        transform: scale(1.05);
+    }
+
+
+    .landscape-container {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out;
+    }
+
+
+    .landscape-container.open {
+        max-height: 250px;
+        margin-top: 12px;
+    }
+
+
+    .landscape-photo {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid #6366f1;
+    }
+   
+.landscape-container {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+}
+
+
+.landscape-container.open {
+    max-height: 1000px;
+    opacity: 1;
+    margin-top: 15px;
+    padding-bottom: 10px;
+}
+
+
+.landscape-photo {
+    width: 100%;      
+    height: auto;      
+    max-width: 100%;  
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: block;
+    object-fit: contain;
+
+
+.school-entry {
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 15px;
+}
+ 
+
+
+   <div class="school-entry">
+    <div class="school-header" onclick="toggleCampus('tlc-img', event)" title="Click to view campus photo">
+        <div style="display:flex; align-items:center; gap:12px;">
+            <img src="c:\Users\DTC\Downloads\tlc.jpg" class="edu-logo" alt="Logo">
+            <strong>The Lewis College (2021-2022)</strong>
+        </div>
+        <a href="https://www.facebook.com/thelewiscollege" target="_blank" class="fb-link" onclick="event.stopPropagation()">Visit FB</a>
+    </div>
+    <div id="tlc-img" class="landscape-container">
+        <img src="c:\Users\DTC\Downloads\tlc.jpg.jpg" class="landscape-photo" alt="TLC Campus Landscape">
+    </div>
+
+
+</div>
+</style>
+<div class="cv-card" onclick="this.classList.toggle('active')">
+    <h3>
+        <span><span class="status-dot"></span>Academic Background</span>
+        <div class="icon-box">🎓</div>
+    </h3>
+    <div class="cv-content">
+        
+        <div class="school-entry">
+            <div class="school-header" onclick="toggleCampus('ssu-img', event)">
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <img src="c:\Users\DTC\Downloads\ssu.jpg" class="edu-logo" alt="Logo">
+                    <strong>SSU - Bulan Campus (2022-PRESENT) </strong>
+                </div>
+                <a href="https://www.facebook.com/SorsogonStateUniversityOfficial" target="_blank" class="fb-link" onclick="event.stopPropagation()">Visit FB</a>
+            </div>
+            <div id="ssu-img" class="landscape-container">
+                <img src="c:\Users\DTC\Downloads\ssu.jpg.jpg" class="landscape-photo" alt="SSU Campus Landscape">
+            </div>
+        </div>
+        <div class="school-entry">
+            <div class="school-header" onclick="toggleCampus('tlc-img', event)">
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <img src="c:\Users\DTC\Downloads\tlc.jpg" class="edu-logo" alt="Logo">
+                    <strong>The Lewis College (2021-2022)</strong>
+                </div>
+                <a href="https://www.facebook.com/thelewiscollege" target="_blank" class="fb-link" onclick="event.stopPropagation()">Visit FB</a>
+            </div>
+            <div id="tlc-img" class="landscape-container">
+                <img src="c:\Users\DTC\Downloads\tlc.jpg.jpg" class="landscape-photo" alt="TLC Campus Landscape">
+            </div>
+        </div>
+
+
+        <div class="school-entry">
+            <div class="school-header" onclick="toggleCampus('sinhs-img', event)">
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <img src="c:\Users\DTC\Downloads\sinhs.jpg" class="edu-logo" alt="Logo">
+                    <strong>San Isidro National High School(2015-2021)</strong>
+                </div>
+                <a href="https://www.facebook.com/SanIsidroBaconSorsogon/about" target="_blank" class="fb-link" onclick="event.stopPropagation()">Visit FB</a>
+            </div>
+            <div id="sinhs-img" class="landscape-container">
+                <img src="c:\Users\DTC\Downloads\sinhs.jpg.jpg" class="landscape-photo" alt="SINHS Campus Landscape">
+            </div>
+        </div>
+
+
+        <div class="school-entry">
+            <div class="school-header" onclick="toggleCampus('sres-img', event)">
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <img src="c:\Users\DTC\Downloads\sres.jpg" class="edu-logo" alt="Logo">
+                    <strong>San Ramon Elementary School (2009-2015)</strong>
+                </div>
+                <a href="https://www.facebook.com/profile.php?id=100063940124788" target="_blank" class="fb-link" onclick="event.stopPropagation()">Visit FB</a>
+            </div>
+            <div id="sres-img" class="landscape-container">
+                <img src="c:\Users\DTC\Downloads\sres.jpg.jpg" class="portrait-photo" alt="SINHS Campus Landscape">
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+<script>
+    function toggleCampus(id, event) {
+        event.stopPropagation(); 
+        const imgDiv = document.getElementById(id);
+        imgDiv.classList.toggle('open');
+    }
+</script>
+        <div class="cv-card" onclick="this.classList.toggle('active')">
+    <h3>
+        <span><span class="status-dot"></span>Advocacy & Experience</span>
+        <div class="icon-box">🏢</div>
+    </h3>
+    <div class="cv-content">
+       
+        <div class="comm-item" onclick="toggleSub(event, 'view-encoder')">
+            <div class="comm-header"><span>💻</span> Computer Encoder – Brgy. San Ramon</div>
+            <div id="view-encoder" class="comm-viewer">
+                <img src="c:\Users\DTC\Downloads\computerencoder.jpg.jpg" class="comm-photo landscape" alt="Encoder Experience">
+            </div>
+        </div>
+
+
+        <div class="comm-item" onclick="toggleSub(event, 'view-clinic')">
+            <div class="comm-header"><span>🏥</span> Volunteer – MCGI Mobile Clinic</div>
+            <div id="view-clinic" class="comm-viewer">
+                <img src="c:\Users\DTC\Downloads\mobileclinic.jpg.jpg" class="comm-photo landscape" alt="Clinic Volunteer">
+            </div>
+        </div>
+
+
+        <div class="comm-item" onclick="toggleSub(event, 'view-writer')">
+            <div class="comm-header"><span>✍️</span> Staff Writer – English Club</div>
+            <div id="view-writer" class="comm-viewer">
+                <img src="c:\Users\DTC\Downloads\englishclubwriter.jpg.jpg" class="comm-photo portrait" alt="Writing Experience">
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+        <style>
+   
+    .cert-item {
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 10px;
+        margin-bottom: 10px;
+        padding: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+
+    .cert-item:hover {
+        border-color: #6366f1;
+        background: rgba(99, 102, 241, 0.05);
+    }
+
+
+    .cert-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+
+    .badge-icon {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+    }
+
+
+   
+    .cert-viewer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out;
+        text-align: center;
+    }
+
+
+    .cert-viewer.open {
+        max-height: 400px;
+        margin-top: 15px;
+        padding-bottom: 10px;
+    }
+
+
+    .full-cert-img {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        border-radius: 5px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+</style>
+
+
+<div class="cv-card" onclick="this.classList.toggle('active')">
+    <h3>
+        <span><span class="status-dot"></span>Certificates</span>
+        <div class="icon-box">📜</div>
+    </h3>
+    <div class="cv-content">
+        
+        <div class="cert-item" onclick="toggleCert('cert-net', event)">
+            <div class="cert-header">
+                <img src="c:\Users\DTC\Downloads\newtorkingbasicsbadge.jpg.jpg" class="badge-icon" alt="Badge">
+                <strong>Networking Basics- Oct 1, 2024</strong>
+            </div>
+            <div id="cert-net" class="cert-viewer">
+                <img src="c:\Users\DTC\Downloads\networkingbasicscertificate.jpg.jpg"       " class="full-cert-img" alt="Certificate">
+            </div>
+        </div>
+        <div class="cert-item" onclick="toggleCert('cert-digi', event)">
+            <div class="cert-header">
+                <img src="c:\Users\DTC\Downloads\createdigitalcontentbadge.jpg.jpg" class="badge-icon" alt="Badge">
+                <strong>Create Digital Content, Communicate and Collaborate Online - Jan 27, 2026</strong>
+            </div>
+            <div id="cert-digi" class="cert-viewer">
+                <img src="c:\Users\DTC\Downloads\createdigitalcontentcertificate.jpg.jpg" class="full-cert-img" alt="Certificate">
+            </div>
+        </div>
+
+
+        <div class="cert-item" onclick="toggleCert('cert-cpp', event)">
+            <div class="cert-header">
+                <img src="c:\Users\DTC\Downloads\c++essentials1badge.jpg.jpg" class="badge-icon" alt="Badge">
+                <strong>C++ Essentials - Jan 29, 2026</strong>
+            </div>
+            <div id="cert-cpp" class="cert-viewer">
+                <img src="c:\Users\DTC\Downloads\c++essentials1certificate.jpg.jpg" class="full-cert-img" alt="Certificate">
+            </div>
+        </div>
+
+
+        <div class="cert-item" onclick="toggleCert('cert-py', event)">
+            <div class="cert-header">
+                <img src="c:\Users\DTC\Downloads\pythonessentials1badge.jpg.jpg" class="badge-icon" alt="Badge">
+                <strong>Python Essentials1 - Feb 5, 2026</strong>
+            </div>
+            <div id="cert-py" class="cert-viewer">
+                <img src="c:\Users\DTC\Downloads\pythonessentials1certificate.jpg.jpg" class="full-cert-img" alt="Certificate">
+            </div>
+        </div>
+
+
+         <div class="cert-item" onclick="toggleCert('cert-py', event)">
+            <div class="cert-header">
+                <img src="c:\Users\DTC\Downloads\applyaiupdateyourresumebadge.jpg.jpg" class="badge-icon" alt="Badge">
+                <strong>Apply AI: Update your resume - Feb 11, 2026</strong>
+            </div>
+            <div id="cert-py" class="cert-viewer">
+                <img src="c:\Users\DTC\Downloads\applyaiupdateyourresumecertificate.jpg.jpg" class="full-cert-img" alt="Certificate">
+            </div>
+        </div>
+
+
+       
+        <div class="cert-item" onclick="toggleCert('cert-js', event)">
+            <div class="cert-header">
+                <img src="c:\Users\DTC\Downloads\javascriptessentials1badge.jpg.jpg" class="badge-icon" alt="Badge">
+                <strong>JavaScript Essentials1 - Feb 19, 2026</strong>
+            </div>
+            <div id="cert-js" class="cert-viewer">
+                <img src="c:\Users\DTC\Downloads\javascriptessentials1certificate.jpg.jpg" class="full-cert-img" alt="Certificate">
+            </div>
+        </div>
+
+
+        <div class="cert-item" onclick="toggleCert('cert-py', event)">
+            <div class="cert-header">
+                <img src="c:\Users\DTC\Downloads\pythonessentials2badge.jpg.jpg" class="badge-icon" alt="Badge">
+                <strong>Python Essentials2 - Mar 25, 2026</strong>
+            </div>
+            <div id="cert-py" class="cert-viewer">
+                <img src="c:\Users\DTC\Downloads\pythonessentials2certificate.jpg.jpg" class="full-cert-img" alt="Certificate">
+            </div>
+        </div>
+
+
+        <div class="cert-item" onclick="toggleCert('cert-js', event)">
+            <div class="cert-header">
+                <img src="c:\Users\DTC\Downloads\javascriptessentials2badge.jpg.jpg" class="badge-icon" alt="Badge">
+                <strong>JavaScript Essentials2 - Apr 15, 2026</strong>
+            </div>
+            <div id="cert-js" class="cert-viewer">
+                <img src="c:\Users\DTC\Downloads\javascriptessentials2certificate.jpg.jpg" class="full-cert-img" alt="Certificate">
+            </div>
+        </div>
+
+
+       
+
+
+    </div>
+
+
+</div>
+<script>
+    function toggleCert(id, event) {
+        // Prevents the main "Certificates" card from closing
+        event.stopPropagation(); 
+        
+        const viewer = document.getElementById(id);
+        viewer.classList.toggle('open');
+    }
+</script>
+<style>
+    
+    .comm-item {
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 10px;
+        margin-bottom: 12px;
+        padding: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    .comm-item:hover {
+        border-color: #f43f5e; 
+        background: rgba(244, 63, 94, 0.05);
+    }
+
+    .comm-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 600;
+        color: #f8fafc;
+    }
+
+    
+    .comm-viewer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out;
+    }
+
+    .comm-viewer.open {
+        max-height: 300px;
+        margin-top: 15px;
+    }
+
+    .comm-photo {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+</style>
+<div class="cv-card" onclick="this.classList.toggle('active')">
+    <h3>
+        <span><span class="status-dot" style="background: #f43f5e;"></span>Community Involvement</span>
+        <div class="icon-box" style="color: #f43f5e;"></div>
+    </h3>
+    <div class="cv-content">
+        
+        <style>
+    
+    .cv-card.active .cv-content {
+        max-height: none; 
+        opacity: 1;
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .comm-item {
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 10px;
+        margin-bottom: 12px;
+        padding: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+
+    .comm-item:hover {
+        border-color: #f43f5e;
+        background: rgba(244, 63, 94, 0.05);
+    }
+
+
+    .comm-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 600;
+        color: #f8fafc;
+        margin-bottom: 10px;
+    }
+
+
+   
+    .comm-viewer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+    }
+
+
+    .comm-viewer.open {
+        max-height: 1000px;
+    }
+
+
+    .comm-photo {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+       
+       
+        object-fit: contain;
+    }
+</style>
+
+
+<div class="comm-item" onclick="toggleSub(event, 'comm-feeding')">
+    <div class="comm-header">
+        <span>🥣</span> MCGI Feeding Program
+    </div>
+    <div id="comm-feeding" class="comm-viewer">
+        <img src="c:\Users\DTC\Downloads\feedingprogram.jpg.jpg" class="comm-photo" alt="Feeding Program">
+    </div>
+</div>
+        <div class="comm-item" onclick="toggleSub(event, 'comm-ocean')">
+            <div class="comm-header">
+                <span>🌊</span> Ocean Care Initiatives
+            </div>
+            <div id="comm-ocean" class="comm-viewer">
+                <img src="c:\Users\DTC\Downloads\oceancareinitiative.jpg.jpg" class="comm-photo" alt="Ocean Care">
+            </div>
+        </div>
+      <div class="comm-item" onclick="toggleSub(event, 'comm-clean')">
+                    <div class="comm-header">
+                    <span>🌍</span> Clean-up Drive
+                </div>
+                    <div id="comm-clean" class="comm-viewer">
+                        <img src="c:\Users\DTC\Downloads\cleanupdrive.jpg.jpg" class="comm-photo" alt="Clean-up Drive"
+                    </div>
+        </div>
+       
+
+
+        <div class="comm-item" onclick="toggleSub(event, 'comm-blood')">
+            <div class="comm-header">
+                <span>🩸</span> Blood Letting Activity
+            </div>
+            <div id="comm-blood" class="comm-viewer">
+                <img src="c:\Users\DTC\Downloads\bloodletting.jpg.jpg" class="comm-photo" class="photo-landscape">
+            </div>
+        </div>
+                <div class="comm-item" onclick="toggleSub(event, 'comm-medical')">
+                    <div class="comm-header">
+                     <span>🏥</span>   Medical Mission Volunteer
+                    </div>
+                    <div id="comm-medical" class="comm-viewer">
+                        <img src="c:\Users\DTC\Downloads\medicalmission.jpg.jpg" class="comm-photo" class="photo-landscape">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+<script>
+    
+    function toggleSub(event, id) {
+        
+        event.stopPropagation(); 
+        
+        const viewer = document.getElementById(id);
+        if(viewer) {
+            viewer.classList.toggle('open');
+        }
+    }
+
+    function openCV() {
+        const cover = document.getElementById("cover");
+        cover.style.opacity = "0";
+        setTimeout(() => {
+            cover.style.display = "none";
+        }, 500);
+    }
+</script>
+</body>
+</html>
